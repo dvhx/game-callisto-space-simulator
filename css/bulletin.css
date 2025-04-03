@@ -1,0 +1,269 @@
+body {
+    background-color: #555;
+    background-image: url(../image/brushed_metal.png);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+.pager {
+    width: 10vw;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+}
+.pager button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    width: 32px;
+    height: 32px;
+    transition: opacity 0.3s linear;
+}
+.pager.hide {
+    opacity: 0;
+}
+#previous {
+    left: 0;
+}
+#next {
+    right: 0;
+}
+#previous button {
+    background-image: url(../image/go-previous.png);
+}
+#next button {
+    background-image: url(../image/go-next.png);
+}
+
+/* bulletin board */
+
+.bulletin {
+    color: black;
+
+    background-image: url(../image/bulletin.jpg);
+    background-size: 100% 100%;
+
+    position: fixed;
+    width: 80vw;
+    height: 90vh;
+    left: 10vw;
+    top: 5vh;
+    box-shadow: 1ex 1ex 2ex black;
+    padding: 2ex 3ex 2ex 3ex;
+    box-sizing: border-box;
+
+    transition: left 0.5s ease-in-out;
+
+    outline: 0px solid yellow;
+    display: flex;
+    flex-direction: column;
+}
+
+.bulletin.hideLeft {
+    left: -110vw;
+}
+.bulletin.hideRight {
+    left: 110vw;
+}
+.bulletin .items {
+    flex: 1;
+    outline: 0px solid red;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.bulletin .item {
+    display: inline-block;
+    box-shadow: 0.2ex 0.2ex 0.4ex rgba(0,0,0,0.5);
+    background-color: white;
+    box-sizing: border-box;
+    margin: 1ex;
+    padding: 1ex;
+    font-size: xx-small;
+    max-width: 30%;
+    min-height: 20%;
+    cursor: pointer;
+}
+@media (min-width: 800px) {
+    .bulletin .item h2 {
+        font-size: medium !important;
+    }
+    .bulletin .item p {
+        font-size: medium !important;
+    }
+}
+.bulletin .done {
+    background-image: url(../image/done.png);
+    background-size: 100% 100%;
+}
+.bulletin .item:before {
+    content: ' ';
+    position: absolute;
+    left: 1ex;
+    top: -1ex;
+    border: 0px solid red;
+    width: 3ex;
+    height: 3ex;
+    background-image: url(../image/pin.png);
+    background-size: 100% 100%;
+}
+.bulletin .item:after {
+    content: ' ';
+    position: absolute;
+    right: 1ex;
+    top: -1ex;
+    border: 0px solid red;
+    width: 3ex;
+    height: 3ex;
+    background-image: url(../image/pin.png);
+    background-size: 100% 100%;
+}
+.bulletin .item h2 {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: x-small;
+    text-align: center;
+}
+.bulletin .item p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    max-height: 15vh;
+    display: -webkit-box;
+    font-size: x-small;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}
+.bulletin h1 {
+    font-family: AstroSpace;
+    font-size: large;
+    text-align: center;
+    margin: 0.5ex;
+}
+.bulletin h1 span {
+    background-color: white;
+    padding: 0.2ex;
+    box-shadow: 0.15ex 0.15ex 0.15ex rgba(0,0,0,0.5);
+}
+
+.bulletin .scrollable {
+    overflow-y: scroll;
+}
+
+/* main screen */
+
+.bulletin.full h1 span {
+    color: yellow;
+    background-color: transparent;
+    text-shadow: 0 0 1ex black;
+    box-shadow: none;
+}
+.bulletin.full {
+    width: 100vw;
+    height: 100vh;
+    left: 0vw;
+    top: 0vh;
+    background-image: url(../image/main_screen.jpg);
+    background-size: cover;
+    box-shadow: 0ex 0ex 1ex rgba(255,255,255,0.2), 0.5ex 0.5ex 3ex inset black;
+    user-select: none;
+}
+.bulletin.full.hideLeft {
+    left: -110vw;
+}
+.bulletin.full.hideRight {
+    left: 110vw;
+}
+
+.bulletin.full .items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.bulletin.full button {
+    text-transform: uppercase;
+    font-size: large;
+    color: #0f0;
+    text-shadow: 0 0 2ex black, 0 0 1ex black;
+    font-weight: bold;
+    border: 1px solid lime;
+    background-color: rgba(0,150,0,0.3);
+    min-width: 30vw;
+    padding: 1ex;
+    margin: 0.5ex;
+    box-shadow: 0 0 1ex rgba(0,0,0,1), 0 0 3px inset lime;
+    border-radius: 5px;
+}
+.bulletin.full button:focus {
+    color: yellow;
+    outline: none;
+    border: 1px solid yellow;
+    box-shadow: 0 0 1ex rgba(0,0,0,1), 0 0 3px inset yellow;
+    background-color: rgba(150,150,0,0.3);
+}
+
+/* dialog with mission details */
+
+#dialog {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+#dialog.hide {
+    display: none;
+}
+#paper {
+    color: black;
+    position: relative;
+    width: 80vw;
+    height: 80vh;
+    background-color: white;
+    padding: 2ex;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    font-family: Typewriter;
+    font-size: medium;
+}
+#paper::-webkit-scrollbar {
+    display: none;
+}
+#paper h1 {
+    font-size: large;
+    margin: 0;
+    text-align: left;
+    text-decoration: underline;
+}
+#paper h2 {
+    font-size: medium;
+    margin: 1ex 0 0 0;
+    text-align: left;
+    text-decoration: underline;
+}
+#paper nav {
+    text-align: center;
+}
+#paper nav button {
+    min-height: 1cm;
+    margin-left: 1ex;
+    margin-right: 1ex;
+}
+#paper nav button.hide {
+    display: none;
+}
+
+

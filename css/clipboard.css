@@ -1,0 +1,110 @@
+/* mission clipboard */
+
+.mission_clipboard {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    background-color: #00000077;
+    background-color: rgba(0,0,0,0.5);
+    font-size: medium;
+    font-family: typewriter;
+    color: #555;
+}
+.mission_clipboard h1, h2, h3 {
+    font-size: medium;
+    font-weight: normal;
+    border-bottom: 0.2ex solid #555;
+    display: inline-block;
+}
+.mission_clipboard p {
+    margin-top: 0.5ex;
+}
+.mission_clipboard .board {
+    max-width: 85vw;
+    height: 100vh;
+    margin: auto;
+    overflow-y: scroll;
+}
+
+.mission_clipboard .board .top {
+    background: url(../image/clipboard.png) no-repeat;
+    background-size: 100% 2cm;
+    height: calc(2cm - 1px);
+}
+.mission_clipboard .board .middle {
+    background-image: url(../image/clipboard-middle.png);
+    background-size: 100% 1cm;
+    flex: 1;
+    padding: 0 6vw 0 6vw;
+}
+.mission_clipboard .board .bottom {
+    background-image: url(../image/clipboard-bottom.png);
+    background-size: 100% 1cm;
+    height: 1cm;
+}
+.mission_clipboard table {
+    border-collapse: collapse;
+    border: 0.3ex solid #555;
+    padding-bottom: 1ex;
+}
+.mission_clipboard td, .mission_clipboard th {
+    border: 0.3ex solid #555;
+    vertical-align: top;
+}
+
+.mission_clipboard input[type="radio"] {
+  -webkit-appearance: none;
+  font-family: typewriter;
+  outline: none;
+  color: #555;
+}
+.mission_clipboard input[type="radio"]:checked:before {
+  content: "(x";
+}
+.mission_clipboard input[type="radio"]:before {
+  content: "( ";
+}
+.mission_clipboard input[type="radio"]:after:checked {
+  content: ")";
+}
+.mission_clipboard input[type="radio"]:after {
+  content: ")";
+}
+.mission_clipboard nav {
+    text-align: center;
+}
+.mission_clipboard label {
+  cursor: pointer;
+}
+.mission_clipboard ul {
+    margin: 0 0 1ex 0;
+    padding-left: 4ex;
+    list-style: upper-roman;
+}
+.mission_clipboard a {
+    color: #711;
+    text-decoration: none;
+}
+
+/* signature */
+
+.mission_clipboard .signature {
+    text-align: right;
+}
+.mission_clipboard .signature .container {
+    display: inline-block;
+    max-width: 30vw;
+}
+.mission_clipboard .signature img {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.mission_clipboard .signature .bot {
+    border-top: 0.2ex dotted #555;
+    padding: 0.2ex 2em 0 2em;
+    text-align: center;
+}

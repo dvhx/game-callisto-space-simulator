@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Editor help</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="stylesheet" href="font/AnotherTypewriter.css" type="text/css" />
+    <!-- link rel="stylesheet" href="lib/prism.css" / -->
+    <script type="text/javascript" src="js/depend/prism.js"></script>
+    <script type="text/javascript" src="js/depend/sylvester.src.js"></script>
+    <link rel="stylesheet" href="css/editor_help.css" type="text/css" />
+    <link rel="shortcut icon" href="image/16.png" type="image/png" />
+    <script type="text/javascript" src="js/solar_system.js"></script>
+    <script type="text/javascript" src="js/editor_help.js"></script>
+    <script type="text/javascript" src="js/model_data.js"></script>
+  </head>
+  <body>
+
+    <h1>Editor help</h1>
+    <a href="editor.html">Back to the editor</a>
+
+    <ul id="tos">
+    </ul>
+
+<pre class="code"><code class="language-js">self.radio = function () {
+    // Standard radio stations update
+    CA.panel.radio.state.ship = CA.player.pos;
+    CA.panel.radio.state.forward = CA.player.dir;
+    if (CA.c1) {
+        CA.panel.radio.state.sources['513MHz'] = CA.c1.pos;
+    }
+    if (CA.mission.customRadioSource) {
+        CA.panel.radio.state.sources[CA.mission.customRadioSource.freq] = CA.mission.customRadioSource.obj.pos;
+    }
+    CA.panel.radio.update(CA.panel.radio.state, true);
+    return Math.sin(4 + {x: 3, b: true, f: 3.15, s: 'a', d: "b", ar: [1, 2, 3]});
+};</code></pre>
+
+<pre><code>self.radio = function () {
+    <span class="comment">// Standard radio stations update</span>
+    CA.panel.radio.state.ship = CA.player.pos;
+    CA.panel.radio.state.forward = CA.player.dir;
+    if (CA.c1) {
+        CA.panel.radio.state.sources['513MHz'] = CA.c1.pos;
+    }
+    if (CA.mission.customRadioSource) {
+        CA.panel.radio.state.sources[CA.mission.customRadioSource.freq] = CA.mission.customRadioSource.obj.pos;
+    }
+    CA.panel.radio.update(CA.panel.radio.state, true);
+    return Math.sin(4 + {x: 3, b: true, f: 3.15, s: 'a', d: "b", ar: [1, 2, 3]});
+};</code></pre>
+
+
+
+
+<h2>Using editor</h2>
+
+<p>
+Editor is where you can create new missions or edit existing missions.
+It requires some basic JS knowledge.
+On the top is control panel with back button (&lt;),
+drop down menu with your missions,
+compile button
+and hamburger menu with other options.
+</p>
+
+<h2>Hamburger menu</h2>
+
+<ul>
+<li>Run - will save, compile and run (if no issues are found) edited mission</li>
+<li>Create new mission - will create new mission with basic structure</li>
+<li>Rename mission - will rename current mission, names must be unique!</li>
+<li>Delete mission - will delete current mission</li>
+<li>Edit existing mission - will import source code of official missions, e.g. Easy mission Refuel at C1. A copy of mission is created so that you can change it without affecting original mission.</li>
+<li>Wrap/Unwrap lines - will change if long lines should be wrapped or scrolled to right.</li>
+<li>Console - will show JS console where you can see log messages and errors.</li>
+<li>Help - will show this help</li>
+<li>Close editor - Will close editor and go back to main screen (pinboards)</li>
+</ul>
+
+<h2>Minimal mission structure</h2>
+
+<p>Following example is minimal mission code that places player in 1AU distance
+from Sun.</p>
+
+<pre class="code"><code class="language-js">var self = CA.commonMission();
+
+
+self.category = 'Custom missions';
+self.title = 'Some unique name';
+self.summary = 'Short summary';
+self.description = 'Long description';
+
+self.init = function () {
+    self.places('Sun');
+    self.place("Player", "Sun", 150000000, 0);
+};
+
+return self;</code></pre>
+
+<h2>Creating new mission</h2>
+
+<p>
+To create new mission, click on hamburger menu ☰ and choose "Create new mission".
+You will be asked for mission name, choose something unique, e.g. "My first mission".
+Then new mission with sample code will be added to editor.
+Press compile button and then if everything is ok you can run the mission by pressing "Run" from hamburger menu.
+To get back to editor simply press back button on your phone.
+</p>
+
+<h2>Guides</h2>
+
+<p>
+Guides are short dialogs displayed on the beginning of each mission.
+You can add buttons to it, or you can use special checker function to
+wait for player to finish some partial task of your mission.
+It is recommended to use short description of the mission and Continue/Abort
+buttons so that user know what mission is this and can go back.
+</p>
+
+<pre class="code"><code class="language-js">// guides
+self.guide('Find earth', ['Continue', 'Abort']);
+self.guide('Use rotation joystick to rotate your ship', 'Continue');</code></pre>
+
+<p>Guides should be inside init() because they may call objects, e.g.:</p>
+
+<pre class="code"><code class="language-js">
+self.guide('Find ' + obj.name, 'Continue');
+</code></pre>
+
+<p>If you need guide message to contain values that are valid at the time when guide
+is displayed wrap it in anonymous function and use self.guideShow():</p>
+
+<pre class="code"><code class="language-js">
+// this will show 500
+self.guide('You started with ' + player.fuel + 'kg of fuel', 'Continue');
+// this will show probably less then 500
+self.guide(function () {
+    self.guideShow('You now have ' + player.fuel + 'kg of fuel', 'Continue');
+});
+</code></pre>
+
+<p>If you need to execute code after guide is displayed use third parameter
+as anonymous function:</p>
+
+<pre class="code"><code class="language-js">
+self.guide('Your ship is now rotating right', 'Continue', function () {
+    CA.controlledShip.rot.elements[2] = 0.1;
+});
+</code></pre>
+
+<p>If you use multiple buttons the one picked by user will be passed to next guide:</p>
+
+<pre class="code"><code class="language-js">self.guide('Pick fruit', ['apple', 'banana', 'cucumber']);
+self.guide(function (aButton) {
+    self.guideShow(aButton + ' is delicious!');
+});
+</code></pre>
+
+<p>There are few buttons with predefined meaning.
+"Abort" will return to pinboard.
+"Continue" will show next guide.
+"Edit" or "Editor" will show custom mission editor.
+If you have multiple buttons use array of strings, e.g. ['Yes', 'No'],
+if you have only one button you can use just string, e.g. 'Continue'.
+</p>
+
+
+<h2>Checking for partial progress</h2>
+
+<p>
+In some missions you want to tell user to do some action in order to continue.
+For that you can use either interval in which you periodically test for progress
+and then call self.guideNext() function, or you can special "guideChecker" function.
+When it's callback returns true the checker will end and next guide will be displayed:
+</p>
+
+<pre class="code"><code class="language-js">self.guideChecker('Your ship is too heavy, please spend 2kg of fuel!', function () {
+    return player.fuel <= 498;
+});
+self.guideChecker('Perfect! Now get earth into crosshair!', function () {
+    var vec = earth.pos.subtract(player.pos),
+        ang = vec.angleFrom(player.dir),
+        deg = CA.radToDeg(ang);
+    return deg &lt; 10;
+});
+self.guide('Excellent!');</code></pre>
+
+<h2>Importing code from existing mission</h2>
+
+<p>
+For inspiration and educational purposes you can import code from existing
+missions. Click on hamburger menu ☰ and choose "Edit existing mission". Another
+menu will appear where you can choose mission.
+This will import copy of mission's source into editor where you can modify it, compile it and run.
+</p>
+
+<h2>Compiling</h2>
+
+<p>
+Press compile button. Source of your mission will be saved, compiled and if there are errors they will be shown in toast.
+It also beautify the code and show errors using linter.
+If everything is OK Compile button will shortly flash green.
+</p>
+
+<h2>Testing mission</h2>
+
+<p>
+After successful compilation you can run mission from hamburger menu.
+You can go back to editor with back button or by pressing "Edit" or "Editor" in first guide.
+You can also add back button to compass using this code:
+</p>
+
+<pre class="code"><code class="language-js">self.cheatCompassBack();</code></pre>
+
+<h2>Special buttons (PERF, CHEAT, REL, CON)</h2>
+
+<p>You can turn on debug mode by calling this function (you can run it before mission from console, it will remember the value):</p>
+
+<pre class="code"><code class="language-js">debug(true);</code></pre>
+
+<p>It will add 4 new buttons:
+"PERF" shows performance stats (doubleclick to close it),
+"CHEAT" that will run one cheat,
+"REL" will reload mission,
+"CON" will show console.</p>
+
+<h2>Adding boosters</h2>
+
+<p>
+You can let user choose type and amount or boosters by adding this in guide:
+</p>
+
+<pre class="code"><code class="language-js">self.guide(CA.srb.dialog);</code></pre>
+
+<p>
+Or you can add fixed amount of boosters from mission code:
+</p>
+
+<pre class="code"><code class="language-js">// 73kN for 25s, 1380 kg fuel, 500kg weight
+CA.srb.add(73000, 25, 1380, 500);
+// 914kN for 170s, 27 tons of fuel, 470 kg weight
+CA.srb.add(914000, 170, 27000, 470);
+</code></pre>
+
+<p>If the thruster is only using for breaking you can specify that:</p>
+
+<pre class="code"><code class="language-js">CA.srb.backDefault = false;</code></pre>
+
+<p>Otherwise user have to use FB thruster to tell the direction in which SRB will be fired.</p>
+
+<h2>Changing initial player position</h2>
+
+<p>
+In the beginning of the mission, you may want to place player near other stations or to point him in
+specific direction. For placement you can use 2 functions:
+</p>
+
+<pre class="code"><code class="language-js">// Teleport within 10m of Alpha
+player.teleport('Alpha', 10);
+// Teleport randomly within 10m - 20, of Alpha
+player.teleportNear('Alpha', 10, 20);</code></pre>
+
+<p>
+These function also face object automatically. If you only want to face object use:
+</p>
+
+<pre class="code"><code class="language-js">player.face('Alpha');</code></pre>
+
+<p>
+If you want to move player forward/back/left/right/up/down, you can use:
+</p>
+
+<pre class="code"><code class="language-js">
+// move player 3m forward
+player.pos = player.pos.add(player.dir.multiply(3));
+// move player 3m back
+player.pos = player.pos.add(player.dir.multiply(-3));
+// move player 3m right
+player.pos = player.pos.add(player.right.multiply(3));
+// move player 3m left
+player.pos = player.pos.add(player.right.multiply(-3));
+// move player 3m up
+player.pos = player.pos.add(player.up().multiply(3));
+// move player 3m down
+player.pos = player.pos.add(player.up().multiply(-3));
+</code></pre>
+
+<p>Please note that up() is function, each objects stores only dir and right vector. Up vector
+is calculated from those two vectors. You can move other objects too, e.g. station C1.
+
+<h2>Changing speed</h2>
+
+<p>For example if player is near C1 and you want it to go slowly towards C1 you
+can use:</p>
+
+<pre class="code"><code class="language-js">player.speed = c1.speed.add(player.dir.multiply(0.5))</code></pre>
+
+<p>If you want player to have same speed as C1 (basically stop player's relative movement towards C1) use:</p>
+
+<pre class="code"><code class="language-js">player.speed = c1.speed.dup();</code></pre>
+
+<h2>Changing rotation</h2>
+
+<p>Object rotation is defined in "rot" vector. First element is roll (positive is clockwise), second element is pitch (positive is down), third element is yaw (positive is right). You can set them manually:</p>
+
+<pre class="code"><code class="language-js">player.rot.elements[0] = 0.1; // roll
+player.rot.elements[1] = 0.2; // pitch
+player.rot.elements[2] = 0.3; // yaw</code></pre>
+
+<p>If you only want to rotate certain amount of degrees and then stop, use these functions:</p>
+
+<pre class="code"><code class="language-js">player.rollDegrees(10);
+player.pitchDegrees(10);
+player.yawDegrees(-20);
+</code></pre>
+
+<p>If you want to face other objects use face function</p>
+
+<pre class="code"><code class="language-js">player.face('C1');
+player.face(o); // o is game object returned by self.place(...) or self.find(name)</code></pre>
+
+<p>To stop object's rotation use stop function:</p>
+
+<pre class="code"><code class="language-js">player.stop();
+c1.stop();</code></pre>
+
+<h2>Known solar system objects</h2>
+
+<p id="solar_names">???</p>
+
+<p>You can access their data by:</p>
+
+<pre class="code"><code class="language-js">CA.solarSystem.data["Himalia"].radius // 85000m = 85km
+CA.solarSystem.data["Himalia"].color // "gray"
+CA.solarSystem.data["Himalia"].parent // "Jupiter"
+CA.solarSystem.data["Himalia"].distance // in meters, from their "parent"
+CA.solarSystem.data["Himalia"].mass // in kg
+CA.solarSystem.data["Himalia"].phase // their initial angle on ecliptic
+CA.solarSystem.data["Himalia"].speed // their circular orbital around parent
+CA.solarSystem.data["C1"].model // "station"
+CA.solarSystem.data["C1"].refuel // true if it is refuel station
+CA.solarSystem.data["C1"].frequency // "513MHz"
+</code></pre>
+
+<h2>Hiding/showing avionics</h2>
+
+<p>In some missions you can hide avionics (gauges). Round gauges will leave round hole, rectangular gauges will leave
+rectangular cover.</p>
+
+<pre class="code"><code class="language-js">CA.panel.battery.hide(true);
+CA.panel.battery.hide(false); // show it again
+CA.panel.clock.hide(true); // round hole
+</code></pre>
+
+<p>If you want to hide 3D display while leaving guides functional, use:</p>
+
+<pre class="code"><code class="language-js">
+CA.panel.display.display.canvas.style.display = 'none'
+</code></pre>
+
+<h2>Breaking avionics</h2>
+
+<p>You can simulate broken avionics by setting calling break(true) on gauges.
+They will behive weirdly. They will still be visible but they won't work.
+For example rotation indicator will randomly rotate.
+Fuel gauge will get stuck on one value.
+SLD will not say anything.
+Joysticks will be unresponsive, etc...
+To fix them simply set broken to false.</p>
+
+<pre class="code"><code class="language-js">CA.panel.rotation.break(true);</code></pre>
+<pre class="code"><code class="language-js">CA.panel.fuel.break(true);</code></pre>
+<pre class="code"><code class="language-js">CA.panel.fuel.break(false);</code></pre>
+
+<p>Following gauges can be broken: compass, clock, fuel, rotation, thrusters,
+lidar, horizon, linsim, radio, battery, pan, thrust, fb, roll.</p>
+
+<h2>Disabling avionics closeup</h2>
+
+<p>Double click on gauge will show it's closeup version. To disable this simply
+set closeupDisabled to true:</p>
+
+<pre class="code"><code class="language-js">CA.panel.lidar.closeupDisabled = true;
+CA.panel.horizon.closeupDisabled = true;
+CA.panel.clock.closeupDisabled = false;
+</code></pre>
+
+<h2>Hiding buttons</h2>
+
+<p>There are two ways to hide buttons. You can hide them while leaving hole behind:</p>
+
+<pre class="code"><code class="language-js">CA.panel.buttons.board.hide(true);</code></pre>
+
+<p>Or you can completely remove them, other buttons will take their place:</p>
+
+<pre class="code"><code class="language-js">CA.panel.buttons.board.gone(true);</code></pre>
+
+<p>To show them again call it again with true parameter.</p>
+
+<h2>Breaking buttons</h2>
+
+<p>To break button simply call break function with true parameter. To fix them call it with false parameter. Broken button is there but does not react to clicks.</p>
+
+<pre class="code"><code class="language-js">CA.panel.buttons.board.break(true);</code></pre>
+<pre class="code"><code class="language-js">CA.panel.buttons.photo.break(false);</code></pre>
+
+<h2>Adding new buttons</h2>
+
+<p>You can add your own buttons next to display using CA.button(...) function.
+First parameter is where (display_left or display_right).
+Second parameter is color (red/green/blue/pink/white/yellow).
+Third is if it is lit on (true/false).
+Fourth parameter is callback. In the callback you can for example change color, or turn light on/off depending on some other mission aspect (e.g. not turning light off because object is too far away).
+Fifth parameter is if the light should be turned on/off automatically on click, otherwise you need to handle it in callback.</p>
+
+<pre class="code"><code class="language-js">CA.button('display_left', 'ABC', 'green', false, function (aOn, aButton) {
+   console.log(aOn, aButton);
+}, true);</code></pre>
+
+<h2>Clicking buttons programatically</h2>
+
+<p>In some missions you might want to click buttons from guides. For example in deorbit mission I set ORTO to vertical
+because that's the only direction player will change ship's direction. To click ORTO twice simply call:</p>
+
+<pre class="code"><code class="language-js">CA.panel.buttons.orto.button.click();
+CA.panel.buttons.orto.button.click();</code></pre>
+
+<p>Button names are: abr, board, cheat, con, cpy, ctr, d3d, ldra, orto, perf, photo, ref, rel, s10, sld, srb, zoom_in, zoom_out</p>
+
+<h2>Changing avionics framerate</h2>
+
+<p>In some computationally demanding missions you might want to lower refresh rate of certain gauges that are not
+used or needed in such mission. Use PERF to see which gauges are costing most performance and adjust their
+refresh rate if they are not important in that mission. From my experience horizon is very demanding while
+providing minimal value so you can lower it's update interval (in seconds):</p>
+
+<pre class="code"><code class="language-js">CA.panel.horizon.updateInterval = 1.5;</code></pre>
+
+<h2>Allow clock speedup</h2>
+
+<p>In long missions you might want to allow clock speedup. To do so call:</p>
+
+<pre class="code"><code class="language-js">self.clockEditable(true);</code></pre>
+
+<p>Be carefull when using in conjunction with JS timers. JS timers are not aware of internal simulation speed.
+Therefore you should disable it when you are entering guide that uses timers, after that
+part of mission is done you can reenable it.</p>
+
+<p>Upper limit for time speedup is 99. You can increase it with following code but I would advise against it. At about 3000 certain moons tends to fly away.</p>
+
+<pre class="code"><code class="language-js">CA.time.speedLimit = 999;</code></pre>
+
+<h2>Game object parameters</h2>
+
+<p>Here is list of all parameters that game objects (including player) can have with example value and description.</p>
+
+<ul>
+  <li><b>boardable</b>: true - If player can board this object</li>
+  <li><b>color</b>: "lime" - Color of circle when object is displayed from afar</li>
+  <li><b>dir</b>: Vector - Forward facing unit vector</li>
+  <li><b>frequency</b>: "512MHz" - Frequency at which objects broadcasts</li>
+  <li><b>fuel</b>: 500 - Weight of fuel in kg</li>
+  <li><b>fuelConsumption</b>: 0.3 - Fuel consumption in g/s</li>
+  <li><b>fuelMax</b>: 500 - Maximal fuel capacity</li>
+  <li><b>lidarable</b>: true - If object is visible in lidar</li>
+  <li><b>mass</b>: 1000 - Weight of the object</li>
+  <li><b>maxModelRenderDistance</b>: 1e20 - Beyond this distance model will not be rendered</li>
+  <li><b>maxRenderDistance</b>: 1e20 - Beyond this distance nothing will be rendered</li>
+  <li><b>model</b>: "delta" - Name of the model (see list below)</li>
+  <li><b>name</b>: "Player" - Name of the object, must be unique</li>
+  <li><b>pos</b>: Vector - Position vector</li>
+  <li><b>radius</b>: 1 - Radius in meters</li>
+  <li><b>refuel</b>: false - If true player can refuel at this object if it is within 3m</li>
+  <li><b>renderAlways</b>: false - If true model will be displayed even when it faces away from player (e.g. large close planet)</li>
+  <li><b>right</b>: Vector - Right facing unit vector</li>
+  <li><b>rot</b>: Vector - Rotation (elements[0] is roll, elements[1] is pitch, elements[2] is yaw)</li>
+  <li><b>speed</b>: Vector - Speed vector (note that it includes orbital speed, if you want to increase speed by 1m use obj.speed = obj.speed.add(obj.dir.multiply(3)));</li>
+  <li><b>thrust</b>: Vector - Thrust vector, only for ship</li>
+  <li><b>thrustMax</b>: 1200 - Maximal thrust in Newtons</li>
+</ul>
+
+<h2>Models</h2>
+
+<p>You can change model of any object by assigning "model" attribute. Model are only rendered when they are large enough to be visible on display.</p>
+
+<pre class="code"><code class="language-js">c1.model = 'relay';
+earth.model = 'sphere';
+</code></pre>
+
+<p>Here is the list of available models: <span id="model_names"></span></p>
+
+<p>You can also create new models by creating vertices and connecting them with lines.</p>
+
+<pre class="code"><code class="language-js">CA.modelData.triangle = {
+    vertices: [
+        Vector.create([0, -1, 0]),  // vertex 0
+        Vector.create([0, 1, 1]),   // vertex 1
+        Vector.create([0, 1, -1])   // vertex 2
+    ],
+    lines: [
+        [0, 1],
+        [1, 2],
+        [2, 0]
+    ]
+};
+c1.model = 'triangle';
+</code></pre>
+
+<h2>Vectors</h2>
+
+<p>This games uses Sylvester math library (http://sylvester.jcoglan.com/) for vector math. Here are few examples:</p>
+
+<pre class="code"><code class="language-js">var a = Vector.create([0, 0, 1]),
+    b = Vector.create([0, 1, 0]),
+    c,
+    d;
+a = a.add(b.multiply(3));
+c = a.modulus();
+d = b.angleFrom(c);
+</code></pre>
+
+<p>Never assign vector to other variables, use .dup() instead:</p>
+
+<pre class="code"><code class="language-js">player.speed = c1.speed.dup();</code></pre>
+
+<h2>Mission events</h2>
+
+<p>You can receive mission events and react on them in "event" function, there are currently 2 events: "photo" when user press PHOTO and "refuel" when user pres REF and refueling finishes. To receive these events use:</p>
+
+<pre class="code"><code class="language-js">self.event = function (aEvent) {
+    console.log(aEvent);
+    if (aEvent === 'photo') {
+        self.guideShow('Perfect photo');
+        self.guideNext();
+    }
+};</code></pre>
+
+<h2>Custom radio</h2>
+
+<p>You can set frequency on any object and it will became available in radio and it will be displayed in clipboard. Sometimes you
+want to have custom radio source. Use self.customRadioSource. That way the clipboard will not reveal it.</p>
+
+<pre class="code"><code class="language-js">self.customRadioSource = {freq: '485MHz', clipboardFreq: '470-490MHz', clipboardSource: 'Pirate radio station', obj: self.find('Amalthea')}</code></pre>
+
+<h2>Mission complete or failed</h2>
+
+<p>Missions should have some goal. You have to program some kind of checker
+that will periodically check conditions and if the goal is met you display
+it and mission success:</p>
+
+<pre class="code"><code class="language-js">self.guideChecker('Get 100m away from C4 in less then 30s!', function () {
+    if (CA.time.s >= 30) {
+        var d = player.distanceTo(c4);
+        if (d > 100) {
+            self.missionComplete('You escaped!');
+        } else {
+            self.missionFailed('You died!');
+        }
+        return true;
+    }
+});
+</code></pre>
+
+<h2>Creating custom clipboard</h2>
+
+<p>Every mission has clipboard with basic info at the bottom. You can add more
+content to it if mission requires it.</p>
+
+<pre class="code"><code class="language-js">self.createClipboard(function (aClipboard) {
+    aClipboard.h1('Report');
+    aClipboard.p('Please fill following report and then sign it. Have you seen any of these?');
+    var p, f, s, sig;
+    p = aClipboard.radios('pirates', ['yes', 'no']);
+    f = aClipboard.radios('fairies', ['yes', 'no']);
+    s = aClipboard.radios('ships', ['yes', 'no']);
+    aClipboard.table([{
+        Object: "Pirates",
+        Seen: p.div
+    }, {
+        Object: "Fairies",
+        Seen: f.div
+    }, {
+        Object: "Ships",
+        Seen: s.div
+    }]);
+    sig = aClipboard.signature(function () {
+        if (!p.value || !f.value || !s.value) {
+            aClipboard.blink(sig.label, 'Fill form first!');
+            return false;
+        }
+        if (p.value === 'yes' &amp;&amp; f.value === 'no' &amp;&amp; s.value === 'yes') {
+            self.missionComplete('Good eyes');
+        } else {
+            self.missionFailed('Check your eyesight!');
+        }
+        aClipboard.hide();
+        return true;
+    });
+
+});
+</code></pre>
+
+  </body>
+</html>
+
+
+

@@ -1,0 +1,21 @@
+/* closeup of gauge */
+
+#closeup {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../image/brushed_metal.png);
+    padding: 0.5cm;
+    display: none;
+    box-sizing: border-box;
+}
+#closeup.show {
+    display: flex;
+}
+#closeup_container {
+    flex: 1;
+    outline: 0px solid red;
+    color: white;
+}

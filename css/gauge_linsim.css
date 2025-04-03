@@ -1,0 +1,86 @@
+/* linear simulator style sheet */
+
+#linsim {
+    user-select: none;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+#linsim_container {
+    display: block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 3px;
+}
+#linsim_container.visible {
+    background-color: black;
+    color: white;
+    border-width: 3px 1px;
+    border-style: solid;
+    border-color: white rgb(119, 119, 119) rgb(119, 119, 119) white;
+    border-image: initial;
+    border-radius: 8px;
+    background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.05) 31%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: rgba(255, 255, 255, 0.4) 2px 2px 8px inset, rgb(0, 0, 0) 2px 2px 8px;
+}
+#linsim > div {
+    outline: 0px dotted red;
+}
+#linsim_m {
+    position: absolute;
+    left: 0%;
+    top: 0%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_mf {
+    position: absolute;
+    left: 0%;
+    top: 25%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_f {
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_s {
+    position: absolute;
+    left: 0%;
+    top: 75%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_fc {
+    position: absolute;
+    left: 50%;
+    top: 0%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_v0 {
+    position: absolute;
+    left: 50%;
+    top: 25%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_t {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 50%;
+    height: 25%;
+}
+#linsim_v {
+    position: absolute;
+    left: 50%;
+    top: 75%;
+    width: 50%;
+    height: 25%;
+}
+

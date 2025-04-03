@@ -1,0 +1,25 @@
+/* syntax highlighting */
+
+code {
+    font-family: monospace;
+}
+code .comment {
+    color: green;
+}
+code .regex {
+    color: lime;
+}
+code .boolean, code .keyword, code .variable {
+    color: black;
+    font-weight: bold;
+}
+code .number {
+    color: purple;
+}
+code .string {
+    color: blue;
+}
+code .punctuation, code .operator {
+    color: red;
+}
+

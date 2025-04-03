@@ -1,0 +1,43 @@
+body {
+    padding: 1ex;
+    margin: 0;
+    color: #555;
+    background-color: #edb;
+    box-sizing: border-box;
+    font-family: Typewriter;
+    font-size: medium;
+}
+
+h1, h2 {
+    font-size: large;
+    padding-top: 1ex;
+}
+
+pre {
+    font-family: Typewriter;
+    border: 2px dashed #555;
+    overflow-x: auto;
+    padding: 0.5ex;
+}
+
+/* syntax highlighting */
+
+code {
+    font-family: Typewriter;
+}
+code .comment {
+    color: green;
+}
+code .boolean, code .keyword {
+    color: black;
+}
+code .number {
+    color: purple;
+}
+code .string {
+    color: blue;
+}
+code .punctuation, code .operator {
+    color: red;
+}
+

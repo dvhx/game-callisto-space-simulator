@@ -1,0 +1,76 @@
+/* simple push button */
+
+button.push {
+    border: 2px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    outline: 0;
+    font-weight: bold;
+    font-size: x-small;
+    min-height: 0.6cm;
+    min-width: 0.6cm;
+    margin: 2px;
+    padding: 1px 4px 1px 4px;
+    user-select: none;
+}
+
+.push:active {
+    position: relative;
+    left: 1px;
+    top: 1px;
+    opacity: 0.8;
+}
+
+.push.white {
+    background-color: rgba(127,127,127,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.white.on {
+    background-color: rgba(255,255,255,1);
+    box-shadow: 0 0 6px 1px rgba(255,255,255,1);
+}
+
+.push.red {
+    background-color: rgba(127,0,0,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.red.on {
+    background-color: rgba(255,0,0,1);
+    box-shadow: 0 0 6px 1px rgba(255,0,0,1);
+}
+
+.push.pink {
+    background-color: rgba(127,140,140,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.pink.on {
+    background-color: rgba(255,180,180,1);
+    box-shadow: 0 0 6px 1px rgba(255,180,180,1);
+}
+
+.push.green {
+    background-color: rgba(0,127,0,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.green.on {
+    background-color: rgba(0,255,0,1);
+    box-shadow: 0 0 6px 1px rgba(0,255,0,1);
+}
+
+.push.blue {
+    background-color: rgba(0,100,150,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.blue.on {
+    background-color: rgba(0,150,255,1);
+    box-shadow: 0 0 6px 1px rgba(0,150,255,1);
+}
+
+.push.yellow {
+    background-color: rgba(160,160,0,1);
+    box-shadow: 0 0 6px 1px rgba(0,0,0,0.5);
+}
+.push.yellow.on {
+    background-color: rgba(255,255,0,1);
+    box-shadow: 0 0 6px 1px rgba(255,255,0,1);
+}
+

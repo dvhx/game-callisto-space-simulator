@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Callisto</title>
+    <link rel="shortcut icon" href="image/16.png" type="image/png" />
+    <link rel="stylesheet" href="css/knob.css" type="text/css" />
+    <link rel="stylesheet" href="css/button.css" type="text/css" />
+    <link rel="stylesheet" href="css/gauge_display.css" type="text/css" />
+    <link rel="stylesheet" href="css/gauge_linsim.css" type="text/css" />
+    <link rel="stylesheet" href="css/closeup.css" type="text/css" />
+    <link rel="stylesheet" href="css/clipboard.css" type="text/css" />
+    <link rel="stylesheet" href="css/main_panel.css" type="text/css" />
+    <link rel="stylesheet" href="css/main_panel_fixed.css" type="text/css" />
+    <link rel="stylesheet" href="css/splash.css" type="text/css" />
+    <link rel="stylesheet" href="font/CrystalItalic.css" type="text/css" />
+    <link rel="stylesheet" href="font/AnotherTypewriter.css" type="text/css" />
+    <!-- script type="text/javascript">
+    window.addEventListener('error', function (event) {
+        alert(event.filename + ':' + event.lineno + ':' + event.colno + ': ' + event.message);
+    });
+    </script -->
+  </head>
+  <body>
+    <div id="loading"></div>
+
+    <script type="text/javascript" src="js/depend/sylvester.src.js"></script>
+
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/splash.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+    <script type="text/javascript" src="js/shared.js"></script>
+    <script type="text/javascript" src="js/back.js"></script>
+    <script type="text/javascript" src="js/is_touch_device.js"></script>
+
+    <script type="text/javascript" src="js/avionics/audio_loop.js"></script>
+    <script type="text/javascript" src="js/avionics/canvas.js"></script>
+    <script type="text/javascript" src="js/avionics/utils.js"></script>
+    <script type="text/javascript" src="js/avionics/mouse.js"></script>
+    <script type="text/javascript" src="js/avionics/knob.js"></script>
+    <script type="text/javascript" src="js/avionics/button.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_joystick.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_lever.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_none.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_clock.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_fuel.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_compass.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_rotation.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_thrust.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_lidar.js?v=2"></script>
+    <script type="text/javascript" src="js/avionics/gauge_horizon.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_lcd_knob.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_linsim.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_radio.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_display.js"></script>
+    <script type="text/javascript" src="js/avionics/gauge_battery.js"></script>
+    <script type="text/javascript" src="js/clipboard.js"></script>
+
+    <script type="text/javascript" src="js/perf.js"></script>
+    <script type="text/javascript" src="js/fasttext.js"></script>
+
+    <script type="text/javascript" src="js/keyboard.js"></script>
+    <script type="text/javascript" src="js/main_panel.js"></script>
+    <script type="text/javascript" src="js/time.js"></script>
+    <script type="text/javascript" src="js/perspective.js"></script>
+    <script type="text/javascript" src="js/solar_system.js"></script>
+    <script type="text/javascript" src="js/go.js"></script>
+    <script type="text/javascript" src="js/render2d.js"></script>
+    <script type="text/javascript" src="js/render3d.js"></script>
+    <script type="text/javascript" src="js/model.js"></script>
+    <script type="text/javascript" src="js/model_data.js"></script>
+    <script type="text/javascript" src="js/sld.js"></script>
+    <script type="text/javascript" src="js/cpy.js"></script>
+    <script type="text/javascript" src="js/ctr.js"></script>
+    <script type="text/javascript" src="js/abr.js"></script>
+    <script type="text/javascript" src="js/sound.js"></script>
+    <script type="text/javascript" src="js/ref.js"></script>
+    <script type="text/javascript" src="js/srb.js"></script>
+
+    <script type="text/javascript" src="js/compile.js"></script>
+
+    <script type="text/javascript" src="js/mission/common.js"></script>
+    <script type="text/javascript" src="js/mission/stats.js"></script>
+
+    <script type="text/javascript" src="js/mission/easy_refuel_c1.js"></script>
+    <script type="text/javascript" src="js/mission/easy_relay_orientation.js"></script>
+    <script type="text/javascript" src="js/mission/easy_panel_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_equipment_photos.js"></script>
+    <script type="text/javascript" src="js/mission/easy_check_incoming_ships.js"></script>
+    <script type="text/javascript" src="js/mission/easy_ship_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_pirate_radio.js"></script>
+
+    <script type="text/javascript" src="js/mission/medium_controlled_deorbit.js"></script>
+    <script type="text/javascript" src="js/mission/medium_dock_rotating_station.js"></script>
+    <script type="text/javascript" src="js/mission/medium_lost_radio_beacon.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_equator_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_polar_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_oumuamua.js"></script>
+
+    <script type="text/javascript" src="js/mission/hard_refuel_c2.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_c3.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_g1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_e1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_i1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_iss.js"></script>
+
+    <script type="text/javascript" src="js/mission/training_main_panel.js"></script>
+    <script type="text/javascript" src="js/mission/training_rotation.js"></script>
+    <script type="text/javascript" src="js/mission/training_compass_horizon.js"></script>
+    <script type="text/javascript" src="js/mission/training_thrust.js"></script>
+    <script type="text/javascript" src="js/mission/training_lidar.js"></script>
+    <script type="text/javascript" src="js/mission/training_radio.js"></script>
+    <script type="text/javascript" src="js/mission/training_autopilot.js"></script>
+    <script type="text/javascript" src="js/mission/training_linsim.js"></script>
+
+    <script type="text/javascript" src="js/fly_init.js"></script>
+    <script type="text/javascript" src="js/fly.js?v=1"></script>
+
+    <nav id="main_panel">
+        <div id="compass"></div>
+        <div id="clock"></div>
+        <div id="lidar"></div>
+        <div id="display_left" class="buttons"></div>
+        <div id="display"></div>
+        <div id="display_right" class="buttons"></div>
+        <div id="linsim"></div>
+        <div id="radio"></div>
+        <div id="battery"></div>
+        <div id="rotation"></div>
+        <div id="fuel"></div>
+        <div id="pan"></div>
+        <div id="roll"></div>
+        <div id="horizon"></div>
+        <div id="thrusters"></div>
+        <div id="bottom" class="buttonsHorizontal"></div>
+        <div id="fb"></div>
+        <div id="thrust"></div>
+        <div id="clipboard"></div>
+    </nav>
+
+    <nav id="closeup">
+        <div id="closeup_container"></div>
+    </nav>
+
+  </body>
+</html>

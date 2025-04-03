@@ -1,0 +1,72 @@
+/* mission editor */
+
+body {
+    padding: 0;
+    margin: 0;
+    color: #555;
+    background-color: #edb; /* #f5efc9; */
+    box-sizing: border-box;
+    font-family: Typewriter;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* top menu */
+
+nav {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    box-sizing: border-box;
+    padding-bottom: 0ex;
+    align-items: center;
+    min-height: 1cm;
+    border-bottom: 2px dashed #555;
+}
+select { text-align-last: right; }
+option { direction: rtl; }
+nav a {
+    color: green;
+    text-decoration: none;
+    min-width: 1cm;
+    min-height: 1cm;
+    text-align: center;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav select, nav button {
+    margin: 0;
+    padding: 1ex;
+    min-width: 1cm;
+    min-height: 1cm;
+    color: #555;
+    font-family: inherit;
+    background: transparent; /* #00000077; */
+    border: 0px solid lime;
+    font-size: medium;
+}
+#missions {
+    flex: 1;
+}
+
+/* editor */
+
+#editor {
+    flex: 1;
+    resize: none;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #555;
+    font-family: Typewriter;
+    font-size: medium;
+    /* white-space: pre-wrap; */
+}
+

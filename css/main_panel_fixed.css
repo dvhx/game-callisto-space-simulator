@@ -1,0 +1,128 @@
+/* main panel using position:fixed layout instead of CSS g r i d */
+#main_panel {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+#main_panel > div {
+    outline: 0px solid red;
+    position: fixed;
+}
+
+#compass {
+    left: 0vw;
+    top: 0vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#clock {
+    left: 50vw;
+    top: 60vh;
+    width: 15vw;
+    height: 30vh;
+}
+#lidar {
+    left: 0vw;
+    top: 20vh;
+    width: 25vw;
+    height: 40vh;
+}
+#display_left {
+    left: 25vw;
+    top: 0vh;
+    width: 10vw;
+    height: 60vh;
+}
+#display {
+    left: 35vw;
+    top: 0vh;
+    width: 30vw;
+    height: 60vh;
+}
+#display_right {
+    left: 65vw;
+    top: 0vh;
+    width: 10vw;
+    height: 60vh;
+}
+#linsim {
+    left: 75vw;
+    top: 0vh;
+    width: 25vw;
+    height: 20vh;
+}
+#radio {
+    left: 75vw;
+    top: 20vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#battery {
+    left: 87.5vw;
+    top: 20vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#rotation {
+    left: 35vw;
+    top: 60vh;
+    width: 15vw;
+    height: 30vh;
+}
+#fuel {
+    left: 87.5vw;
+    top: 40vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#pan {
+    left: 0vw;
+    top: 60vh;
+    width: 25vw;
+    height: 40vh;
+}
+#roll {
+    left: 25vw;
+    top: 60vh;
+    width: 10vw;
+    height: 40vh;
+}
+#horizon {
+    left: 12.5vw;
+    top: 0vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#thrusters {
+    left: 75vw;
+    top: 40vh;
+    width: 12.5vw;
+    height: 20vh;
+}
+#bottom {
+    display: none;
+}
+#fb {
+    left: 65vw;
+    top: 60vh;
+    width: 10vw;
+    height: 40vh;
+}
+#thrust {
+    left: 75vw;
+    top: 60vh;
+    width: 25vw;
+    height: 40vh;
+}
+#clipboard {
+    left: 35vw;
+    top: 90vh;
+    width: 30vw;
+    height: 10vh;
+}

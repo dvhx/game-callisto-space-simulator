@@ -1,0 +1,64 @@
+/* main panel with all gauges */
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white; /* #444; */
+    background-image: url(../image/brushed_metal.png);
+}
+#main_panel .buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: initial;
+    justify-content: initial;
+    overflow-y: scroll;
+}
+#main_panel .buttonsHorizontal {
+    display: flex;
+    flex-direction: row;
+}
+#clipboard {
+    background-size: 100% 100%;
+}
+.black_lcd {
+    padding: 3px;
+    background-color: black;
+    color: white;
+    border-width: 3px 1px;
+    border-style: solid;
+    border-color: white rgb(119, 119, 119) rgb(119, 119, 119) white;
+    border-image: initial;
+    border-radius: 8px;
+    background-image: linear-gradient(170deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.05) 31%, rgba(255, 255, 255, 0) 100%);
+    box-shadow: rgba(255, 255, 255, 0.4) 2px 2px 8px inset, rgb(0, 0, 0) 2px 2px 8px;
+    box-sizing: border-box;
+}
+
+#loading {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    color: black;
+    font-size: large;
+    align-items: center;
+    justify-content: center;
+    z-index: 99;
+}
+
+/* hide scrollbars */
+#main_panel .buttons::-webkit-scrollbar {
+    display: none;
+}
+.display_dlg .msg::-webkit-scrollbar {
+    display: none;
+}
+.mission_clipboard .board::-webkit-scrollbar {
+    display: none;
+}
+

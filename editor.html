@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mission editor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="stylesheet" href="font/AnotherTypewriter.css" type="text/css" />
+    <link rel="stylesheet" href="css/splash.css" type="text/css" />
+    <link rel="stylesheet" href="css/editor.css" type="text/css" />
+    <link rel="stylesheet" href="css/prism.css" type="text/css" />
+    <link rel="shortcut icon" href="image/16.png" type="image/png" />
+
+    <script type="text/javascript" src="js/splash.js"></script>
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/shared.js"></script>
+    <script type="text/javascript" src="js/back.js"></script>
+    <script type="text/javascript" src="js/popup.js"></script>
+    <script type="text/javascript" src="js/fetch.js"></script>
+
+    <script type="text/javascript" src="js/depend/sylvester.src.js"></script>
+    <script type="text/javascript" src="js/avionics/utils.js"></script>
+    <script type="text/javascript" src="js/solar_system.js"></script>
+    <script type="text/javascript" src="js/go.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+
+    <script type="text/javascript" src="js/mission/common.js"></script>
+    <script type="text/javascript" src="js/mission/sources.js"></script>
+
+    <script type="text/javascript" src="js/mission/easy_refuel_c1.js"></script>
+    <script type="text/javascript" src="js/mission/easy_relay_orientation.js"></script>
+    <script type="text/javascript" src="js/mission/easy_panel_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_equipment_photos.js"></script>
+    <script type="text/javascript" src="js/mission/easy_check_incoming_ships.js"></script>
+    <script type="text/javascript" src="js/mission/easy_ship_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_pirate_radio.js"></script>
+    <script type="text/javascript" src="js/mission/medium_controlled_deorbit.js"></script>
+    <script type="text/javascript" src="js/mission/medium_dock_rotating_station.js"></script>
+    <script type="text/javascript" src="js/mission/medium_lost_radio_beacon.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_equator_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_polar_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_oumuamua.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_c2.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_c3.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_g1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_e1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_i1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_iss.js"></script>
+    <script type="text/javascript" src="js/mission/training_main_panel.js"></script>
+    <script type="text/javascript" src="js/mission/training_rotation.js"></script>
+    <script type="text/javascript" src="js/mission/training_compass_horizon.js"></script>
+    <script type="text/javascript" src="js/mission/training_thrust.js"></script>
+    <script type="text/javascript" src="js/mission/training_lidar.js"></script>
+    <script type="text/javascript" src="js/mission/training_radio.js"></script>
+    <script type="text/javascript" src="js/mission/training_autopilot.js"></script>
+    <script type="text/javascript" src="js/mission/training_linsim.js"></script>
+
+    <script type="text/javascript" src="js/depend/prism.js"></script>
+
+    <script type="text/javascript" src="js/compile.js"></script>
+    <script type="text/javascript" src="js/depend/beautify.js"></script>
+    <script type="text/javascript" src="js/depend/js_beautify.js"></script>
+    <script type="text/javascript" src="js/depend/jslint.js"></script>
+    <!--script type="text/javascript" src="lib/linter/jslint2.js"></script -->
+    <script type="text/javascript" src="js/linter.js"></script>
+    <script type="text/javascript" src="js/editor.js"></script>
+
+  </head>
+  <body>
+
+    <nav>
+        <a id="back" href="index.html">&lt;</a>
+        <select id="missions">
+            <option disabled selected>Missions</option>
+        </select>
+        <button id="save">Compile</button>
+        <button id="hamburger">☰</button>
+    </nav>
+
+    <textarea id="editor" spellcheck="false" placeholder="Click ☰ for comprehensive help"></textarea>
+
+  </body>
+</html>
+
+
+
