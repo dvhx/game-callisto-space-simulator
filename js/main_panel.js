@@ -293,7 +293,7 @@ SC.mainPanel = function () {
         // Show guide at the beginning of the mission
         SC.panel.display.dialog(aMessage, aButtons, function (aButton) {
             if (aButton === 'Abort' || aButton === 'Return to pinboard') {
-                document.location = 'index.html';
+                document.location = 'pinboard.html';
                 return;
             }
             if (aButton === 'Edit' || aButton === 'Editor') {

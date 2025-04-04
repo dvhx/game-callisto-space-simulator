@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Callisto - pinboard</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="shortcut icon" href="image/pin.png" type="image/png" />
+    <link rel="stylesheet" href="css/bulletin.css" type="text/css" />
+    <link rel="stylesheet" href="css/splash.css" type="text/css" />
+    <link rel="stylesheet" href="font/AstroSpace.css" type="text/css" />
+    <link rel="stylesheet" href="font/AnotherTypewriter.css" type="text/css" />
+
+    <script type="text/javascript" src="js/storage.js"></script>
+    <script type="text/javascript" src="js/splash.js"></script>
+    <script type="text/javascript" src="js/back.js"></script>
+    <script type="text/javascript" src="js/shared.js"></script>
+    <script type="text/javascript" src="js/is_touch_device.js"></script>
+
+    <script type="text/javascript" src="js/mission/common.js"></script>
+
+    <script type="text/javascript" src="js/mission/easy_refuel_c1.js"></script>
+    <script type="text/javascript" src="js/mission/easy_relay_orientation.js"></script>
+    <script type="text/javascript" src="js/mission/easy_panel_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_equipment_photos.js"></script>
+    <script type="text/javascript" src="js/mission/easy_check_incoming_ships.js"></script>
+    <script type="text/javascript" src="js/mission/easy_ship_inspection.js"></script>
+    <script type="text/javascript" src="js/mission/easy_pirate_radio.js"></script>
+
+    <script type="text/javascript" src="js/mission/medium_controlled_deorbit.js"></script>
+    <script type="text/javascript" src="js/mission/medium_dock_rotating_station.js"></script>
+    <script type="text/javascript" src="js/mission/medium_lost_radio_beacon.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_equator_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_metis_polar_landing.js"></script>
+    <script type="text/javascript" src="js/mission/medium_oumuamua.js"></script>
+
+    <script type="text/javascript" src="js/mission/hard_refuel_c2.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_c3.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_g1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_e1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_i1.js"></script>
+    <script type="text/javascript" src="js/mission/hard_refuel_iss.js"></script>
+
+    <script type="text/javascript" src="js/mission/training_main_panel.js"></script>
+    <script type="text/javascript" src="js/mission/training_rotation.js"></script>
+    <script type="text/javascript" src="js/mission/training_compass_horizon.js"></script>
+    <script type="text/javascript" src="js/mission/training_thrust.js"></script>
+    <script type="text/javascript" src="js/mission/training_lidar.js"></script>
+    <script type="text/javascript" src="js/mission/training_radio.js"></script>
+    <script type="text/javascript" src="js/mission/training_autopilot.js"></script>
+    <script type="text/javascript" src="js/mission/training_linsim.js"></script>
+
+    <script type="text/javascript" src="js/clipboard.js"></script>
+    <script type="text/javascript" src="js/swipe.js"></script>
+    <script type="text/javascript" src="js/toast.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+  </head>
+  <body>
+
+    <!-- previous pinboard -->
+    <div id="previous" class="pager hide"><button></button></div>
+
+    <!-- 4 pinboards with missions -->
+    <div>
+        <div id="home" class="bulletin full">
+            <h1><span>Callisto space simulator</span></h1>
+            <div class="items" id="home_missions">
+                <button id="btn_missions">Missions</button>
+                <button id="btn_editor">Editor</button>
+                <button id="btn_bug_report">Bug report</button>
+            </div>
+        </div>
+
+        <div id="training" class="bulletin hideRight">
+            <h1><span>Training missions</span></h1>
+            <div class="items" id="training_missions">
+            </div>
+        </div>
+
+        <div id="easy" class="bulletin hideRight">
+            <h1><span>Easy missions</span></h1>
+            <div class="items" id="easy_missions">
+            </div>
+        </div>
+
+        <div id="medium" class="bulletin hideRight">
+            <h1><span>Medium missions</span></h1>
+            <div class="items" id="medium_missions">
+            </div>
+        </div>
+
+        <div id="transfer" class="bulletin hideRight">
+            <h1><span>Transfer missions</span></h1>
+            <div class="items" id="transfer_missions">
+            </div>
+        </div>
+
+        <div id="custom" class="bulletin hideRight">
+            <h1><span>Custom missions</span></h1>
+            <div class="items scrollable" id="custom_missions">
+            </div>
+        </div>
+    </div>
+
+    <!-- next pinboard -->
+    <div id="next" class="pager"><button></button></div>
+
+    <!-- dialog with mission details -->
+    <div id="dialog" class="hide">
+        <div id="paper">
+            <h1 id="paper_title" onclick="document.location.reload()">Title</h1>
+            <p id="paper_summary"></p>
+            <nav id="mission_old">
+                <button id="accept">Accept</button>
+                <button id="decline">Decline</button>
+            </nav>
+            <h2>Description</h2>
+            <p id="paper_description"></p>
+        </div>
+    </div>
+
+  </body>
+</html>
+
+
+

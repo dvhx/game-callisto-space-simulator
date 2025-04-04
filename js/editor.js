@@ -72,7 +72,7 @@ SC.onSave = function () {
 
 SC.onBack = function () {
     // Go back to main menu
-    document.location = 'index.html';
+    document.location = 'pinboard.html';
 };
 
 SC.onRun =  function () {

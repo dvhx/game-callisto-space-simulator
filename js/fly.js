@@ -9,7 +9,7 @@ SC.abortDialog = function () {
     // return
     var s = SC.splash('Abort mission?', ['Abort mission', 'Continue mission'], 'pink', 'Are you sure you want to abort this mission and return to pinboard?', function (aButton) {
         if (aButton === 'Abort mission') {
-            document.location = 'index.html';
+            document.location = 'pinboard.html';
         }
     }, '60vw', 'auto');
     s.bgClickDisable();

@@ -118,7 +118,7 @@ SC.clipboard = function () {
     self.p('Sign here to abort this mission');
     self.signature(function () {
         window.setTimeout(function () {
-            document.location = 'index.html';
+            document.location = 'pinboard.html';
         }, 1000);
         return true;
     }, 'abort');

@@ -152,7 +152,7 @@ SC.commonMission = function () {
         // Show mission failed dialog and return to pinboard
         self.checker = null;
         SC.panel.display.dialog('Mission failed!' + (aReason ? ' ' + aReason : ''), 'Return to pinboard', function () {
-            document.location = 'index.html';
+            document.location = 'pinboard.html';
         });
     };
 
@@ -161,7 +161,7 @@ SC.commonMission = function () {
         self.checker = null;
         SC.storage.writeObject('CA_MISSION_SCORE_' + SC.missionKey, {score: aScore, time: SC.time.s});
         var dlg = SC.panel.display.dialog('Mission completed in ' + SC.time.hms(SC.time.s) + '! ' + (aReason || ''), 'Return to pinboard', function () {
-            document.location = 'index.html';
+            document.location = 'pinboard.html';
         });
         self.submitHighScore(aScore, function (aStats) {
             dlg.msg.textContent += ' ' + aStats;
