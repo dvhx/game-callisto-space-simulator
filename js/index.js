@@ -180,7 +180,6 @@ SC.bulletin = (function () {
             }
         }
         self.update();
-        SC.fixMobile(console.log);
     });
 
 

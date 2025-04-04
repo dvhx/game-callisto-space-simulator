@@ -37,40 +37,21 @@ SC.landscape = function () {
     }
 };
 
-SC.fixMobile = function (aCallback) {
-    // set fullscreen and lock orientation on mobile
-    if (SC.storage.readBoolean('SC.dontFixMobile', false)) {
-        aCallback();
-        return;
-    }
-    if (!SC.isTouchDevice()) {
-        aCallback();
-        return;
-    }
-    if (document.fullscreenElement) {
-        aCallback();
-        return;
-    }
-    var div = document.createElement('div');
-    div.style.position = 'fixed';
-    div.style.left = 0;
-    div.style.top = 0;
-    div.style.right = 0;
-    div.style.bottom = 0;
-    div.style.backgroundImage = 'url(image/brushed_metal.png)';
-    div.style.zIndex = 1000000;
-    div.style.display = 'flex';
-    div.style.alignItems = 'center';
-    div.style.justifyContent = 'center';
-    div.style.color = 'white';
-    div.textContent = 'Tap anywhere to enable fullscreen+landscape mode';
-    document.body.appendChild(div);
-    div.onclick = function () {
-        div.parentElement.removeChild(div);
-        SC.fullscreen();
+SC.fullscreenAndLandscape = function () {
+    // Turn on fullscreen, then landscape, then hide dialog and show iframe
+    SC.fullscreen();
+    window.requestAnimationFrame(function () {
+        SC.landscape();
         window.requestAnimationFrame(function () {
-            SC.landscape();
-            window.requestAnimationFrame(aCallback);
+            var dlg = document.getElementById('dlg');
+            var ifr = document.getElementById('ifr');
+            if (dlg) {
+                dlg.close();
+            }
+            if (ifr) {
+                ifr.style.display = 'block';
+            }
         });
-    };
+    });
 };
+

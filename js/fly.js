@@ -26,10 +26,6 @@ window.addEventListener('DOMContentLoaded', function () {
         SC.showToast('This game can only be played in landscape mode!');
     }
     // mobile start requires touch to activate fullscreen and orientation lock
-    if (SC.isTouchDevice()) {
-        SC.fixMobile(SC.normalStart);
-        return;
-    }
     SC.normalStart();
 });
 
