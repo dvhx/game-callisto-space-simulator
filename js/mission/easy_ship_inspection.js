@@ -81,7 +81,7 @@ SC.missions.E8 = (function () {
                 r,
                 gg = self.possibleGauges.sort();
             aClipboard.h1('Report');
-            aClipboard.p('Inspect all three relay satellites and fill in following report. Remember to sign the finished report!');
+            aClipboard.p('Inspect the ship and fill in following report of damaged or missing equipment. Remember to sign the finished report!');
             t = [];
             radios = {};
             for (j = 0; j < gg.length; j++) {
